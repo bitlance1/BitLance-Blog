@@ -4,6 +4,7 @@ import { Navigation } from "../components/Navigation";
 import { Footer } from "../components/Footer";
 import { SEO } from "../components/SEO";
 import { Bookmark, Clock, Trash2, Users, FileText, ArrowRight } from "lucide-react";
+import { Breadcrumbs } from "../components/Breadcrumbs";
 
 export function ProfilePage() {
   const [activeTab, setActiveTab] = useState<'bookmarks' | 'following'>('bookmarks');
@@ -44,14 +45,31 @@ export function ProfilePage() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
-      <SEO title="My Profile - Bitlance" description="View your reading list and profile" />
+      <SEO 
+        title="My Reader Profile & Reading List - BitLance" 
+        description="Access your saved Bitcoin guides, freelance tutorials, remote work articles, and followed author feeds on your customized BitLance profile page." 
+        canonicalUrl="https://bitlance.work/profile"
+        personSchema={{
+          name: "Bitlance Reader",
+          description: "Active reader and contributor on BitLance, exploring remote work, decentralized micro-payroll, and Bitcoin developments.",
+          jobTitle: "Bitcoin Economy Contributor",
+          skills: ["Bitcoin", "Lightning Network", "Remote Work", "Digital Payments"]
+        }}
+        breadcrumbs={[
+          { name: "Blog", item: "/" },
+          { name: "Profile", item: "/profile" }
+        ]}
+      />
       <Navigation />
       
-      <main className="flex-1 max-w-5xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+      <main className="flex-1 max-w-5xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 md:py-10">
+        <div className="mb-6">
+          <Breadcrumbs items={[{ name: "Profile", path: "/profile" }]} />
+        </div>
         
         {/* Profile Header */}
         <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm mb-8 flex items-center gap-6">
-          <img src="https://i.pravatar.cc/150?u=user_1" alt="Profile" className="w-20 h-20 rounded-full border border-gray-200" />
+          <img src="https://i.pravatar.cc/150?u=user_1" alt="Profile avatar" className="w-20 h-20 rounded-full border border-gray-200" loading="lazy" referrerPolicy="no-referrer" />
           <div>
             <h1 className="text-3xl font-bold text-gray-900 mb-1">My Profile</h1>
             <p className="text-gray-500 font-medium">Logged in as Reader</p>
@@ -110,8 +128,10 @@ export function ProfilePage() {
                           <Link to={`/article/${article.slug || article.id}`} className="w-full sm:w-48 h-32 shrink-0 rounded-xl overflow-hidden bg-gray-100 block">
                             <img 
                               src={article.featured_image} 
-                              alt="" 
+                              alt={article.title || "Bookmarked article"} 
                               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                              loading="lazy"
+                              referrerPolicy="no-referrer"
                             />
                           </Link>
                         )}
@@ -183,6 +203,8 @@ export function ProfilePage() {
                               src={article.featured_image} 
                               alt={article.title} 
                               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                              loading="lazy"
+                              referrerPolicy="no-referrer"
                             />
                           </div>
                         )}

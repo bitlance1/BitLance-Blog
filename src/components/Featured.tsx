@@ -43,7 +43,7 @@ export function Featured() {
               animate={{ opacity: 1 }}
               className="group relative lg:col-span-8 aspect-[4/3] lg:aspect-[16/10] overflow-hidden block"
             >
-              <Link to={`/article/${mainArticle.id}`} className="absolute inset-0 z-10" />
+              <Link to={`/article/${mainArticle.slug || mainArticle.id}`} className="absolute inset-0 z-10" />
               <img 
                 src={mainArticle.featured_image || "https://images.unsplash.com/photo-1621504450181-5d356f61d307?q=80&w=2787&auto=format&fit=crop"} 
                 alt={mainArticle.title} 
@@ -78,7 +78,7 @@ export function Featured() {
                 transition={{ delay: 0.1 * (index + 1) }}
                 className={`group relative aspect-[16/10] md:aspect-auto sm:col-span-1 border border-gray-100 lg:col-span-1 overflow-hidden block h-full min-h-[240px] ${index === 2 ? 'sm:col-span-2 lg:col-span-1' : ''}`}
               >
-                <Link to={`/article/${article.id}`} className="absolute inset-0 z-10" />
+                <Link to={`/article/${article.slug || article.id}`} className="absolute inset-0 z-10" />
                 <img 
                   src={article.featured_image || "https://images.unsplash.com/photo-1596526131083-e8c633c948d2?q=80&w=2574&auto=format&fit=crop"} 
                   alt={article.title} 

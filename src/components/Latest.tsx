@@ -53,7 +53,7 @@ export function Latest() {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05 }}
                 >
-                  <Link to={`/article/${article.id}`} className="group flex flex-col hover:opacity-90 transition-opacity">
+                  <Link to={`/article/${article.slug || article.id}`} className="group flex flex-col hover:opacity-90 transition-opacity">
                     <div className="relative aspect-[16/10] overflow-hidden bg-gray-100 mb-4 border border-gray-200">
                       <img 
                         src={article.featured_image || "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2670&auto=format&fit=crop"} 

@@ -12,6 +12,7 @@ import {
 import { Navigation } from "../components/Navigation";
 import { Footer } from "../components/Footer";
 import { SEO } from "../components/SEO";
+import { Breadcrumbs } from "../components/Breadcrumbs";
 
 export function ArticlePage() {
   const { slug } = useParams();
@@ -27,6 +28,67 @@ export function ArticlePage() {
   );
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
+  const [relatedArticles, setRelatedArticles] = useState<any[]>([]);
+  const [users, setUsers] = useState<any[]>([]);
+  const [categories, setCategories] = useState<any[]>([]);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+
+  const triggerToast = (msg: string) => {
+    setToastMessage(msg);
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 3000);
+  };
+
+  useEffect(() => {
+    fetch("/api/users")
+      .then((r) => r.json())
+      .then((data) => setUsers(data))
+      .catch(console.error);
+
+    fetch("/api/categories")
+      .then((r) => r.json())
+      .then((data) => setCategories(data))
+      .catch(console.error);
+  }, []);
+
+  useEffect(() => {
+    if (!article) return;
+    fetch("/api/articles?status=published")
+      .then((r) => r.json())
+      .then((data) => {
+        const others = data.filter((a: any) => a.id !== article.id);
+        const sorted = others.sort((a: any, b: any) => {
+          if (a.category_id === article.category_id && b.category_id !== article.category_id) return -1;
+          if (a.category_id !== article.category_id && b.category_id === article.category_id) return 1;
+          return new Date(b.published_at || b.created_at).getTime() - new Date(a.published_at || a.created_at).getTime();
+        });
+        setRelatedArticles(sorted.slice(0, 3));
+      })
+      .catch(console.error);
+  }, [article]);
+
+  const getCategoryName = (id: string) => {
+    const cat = categories.find((c) => c.id === id);
+    return cat ? cat.name : "Resources";
+  };
+
+  const getAuthor = (authorId: string) => {
+    return users.find((u) => u.id === authorId) || {
+      name: "Bitlance Team",
+      avatar: "https://i.pravatar.cc/150?u=admin",
+    };
+  };
+
+  const getReadingTimeForArticle = (art: any) => {
+    if (art.reading_time) return art.reading_time;
+    const text = art.content ? art.content.replace(/<[^>]+>/g, "") : "";
+    const words = text.trim().split(/\s+/).length || 1;
+    const minutes = Math.max(1, Math.ceil(words / 200));
+    return `${minutes} min read`;
+  };
 
   useEffect(() => {
     fetch(`/api/articles/${slug}`)
@@ -170,15 +232,29 @@ export function ArticlePage() {
     <div className="min-h-screen bg-white">
       <SEO
         type="article"
-        title={article.seo_title || article.title}
-        description={article.subtitle}
-        image={article.featured_image}
-        url={`https://bitlance.com/article/${article.slug || article.id}`}
+        title={article.seo_title || article.title || "BitLance Article"}
+        description={article.meta_description || article.subtitle || article.content?.replace(/<[^>]+>/g, "").substring(0, 155) || "Read this article on BitLance."}
+        image={article.og_image || article.featured_image}
+        url={article.canonical_url || `https://blog.bitlance.work/article/${article.slug || article.id}`}
         publishedTime={article.published_at || article.created_at}
         modifiedTime={
           article.updated_at || article.published_at || article.created_at
         }
-        articleBody={article.content.replace(/<[^>]+>/g, "")}
+        authorName={author?.name || "Bitlance Team"}
+        articleBody={article.content?.replace(/<[^>]+>/g, "")}
+        robotsMeta={article.robots_meta || "index, follow"}
+        canonicalUrl={article.canonical_url || `https://blog.bitlance.work/article/${article.slug || article.id}`}
+        ogTitle={article.og_title}
+        ogDescription={article.og_description}
+        ogImage={article.og_image}
+        twitterCard={article.twitter_card || "summary_large_image"}
+        schemaData={article.schema_data}
+        faqs={article.faqs}
+        breadcrumbs={[
+          { name: "Blog", item: "/" },
+          { name: getCategoryName(article.category_id), item: `/?category=${article.category_id}` },
+          { name: article.title, item: `/article/${article.slug || article.id}` }
+        ]}
       />
       {/* Reading Progress Bar */}
       <div
@@ -188,12 +264,15 @@ export function ArticlePage() {
       <Navigation />
 
       <article className="pt-8 pb-32 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-        <Link
-          to="/"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-gray-500 hover:text-gray-900 transition-colors mb-8"
-        >
-          <ArrowLeft className="h-4 w-4" /> Back to Blog
-        </Link>
+        <div className="mb-6">
+          <Breadcrumbs
+            items={[
+              { name: "Blog", path: "/" },
+              { name: getCategoryName(article.category_id), path: `/?category=${article.category_id}` },
+              { name: article.title, path: `/article/${article.slug || article.id}` }
+            ]}
+          />
+        </div>
 
         {/* Header */}
         <header className="mb-12 max-w-3xl mx-auto text-center">
@@ -240,6 +319,8 @@ export function ArticlePage() {
               src={article.featured_image}
               alt={article.title}
               className="w-full h-full object-cover"
+              loading="lazy"
+              referrerPolicy="no-referrer"
             />
           </div>
         )}
@@ -324,7 +405,7 @@ export function ArticlePage() {
                   onClick={() => {
                     const url = `https://bitlance.com/article/${article.slug || article.id}`;
                     navigator.clipboard.writeText(url);
-                    alert("Link copied to clipboard!");
+                    triggerToast("Link copied to clipboard!");
                   }}
                   title="Copy Link"
                   className="p-2.5 text-gray-400 hover:text-brand-500 hover:bg-brand-50 rounded-full transition-colors border border-transparent hover:border-brand-100"
@@ -352,6 +433,53 @@ export function ArticlePage() {
               className="prose prose-lg prose-brand max-w-none text-gray-700 leading-relaxed font-sans"
               dangerouslySetInnerHTML={{ __html: article.content }}
             />
+
+            {/* FAQ Accordion Section */}
+            {article.faqs && article.faqs.length > 0 && (
+              <div className="mt-16 border-t border-gray-100 pt-12 animate-fade-in">
+                <h3 className="heading-display text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                  <span className="text-brand-500 font-extrabold font-mono text-xl">?</span> Frequently Asked Questions
+                </h3>
+                <div className="space-y-4">
+                  {article.faqs.map((faq: any, idx: number) => (
+                    <div key={idx} className="bg-gray-50/50 rounded-2xl p-6 border border-gray-100/80 hover:border-brand-100 hover:bg-white transition-all duration-200 shadow-sm">
+                      <h4 className="text-base font-bold text-gray-900 mb-2">
+                        {faq.question}
+                      </h4>
+                      <p className="text-gray-600 text-sm leading-relaxed font-medium">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Call to Action Card */}
+            <div className="mt-16 border border-brand-100 bg-brand-50/40 rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm animate-fade-in">
+              <div className="max-w-md text-left">
+                <h4 className="text-xl font-extrabold text-gray-950 tracking-tight mb-2">
+                  Ready to build in the Bitcoin economy?
+                </h4>
+                <p className="text-gray-600 text-sm leading-relaxed font-medium">
+                  Connect with vetted freelancers or find top-tier, borderless Bitcoin-native jobs on Bitlance.
+                </p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3 shrink-0 w-full md:w-auto">
+                <a
+                  href="https://www.bitlance.work/signup"
+                  className="flex-1 text-center bg-brand-500 hover:bg-brand-600 text-white font-bold text-sm px-6 py-3 rounded-2xl transition-colors shadow-sm whitespace-nowrap"
+                >
+                  Find Talent
+                </a>
+                <a
+                  href="https://www.bitlance.work/signup"
+                  className="flex-1 text-center bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 font-bold text-sm px-6 py-3 rounded-2xl transition-colors shadow-sm whitespace-nowrap"
+                >
+                  Find Work
+                </a>
+              </div>
+            </div>
 
             {/* Author Bio Footer */}
             <div className="mt-16 bg-[#FFFBF7] rounded-3xl p-8 sm:p-10 border border-brand-100 flex flex-col sm:flex-row gap-6 sm:gap-8 items-center sm:items-start group transition-all hover:shadow-md">
@@ -412,6 +540,73 @@ export function ArticlePage() {
           </div>
         </div>
 
+        {/* Related Articles Section */}
+        {relatedArticles.length > 0 && (
+          <div className="mt-24 pt-16 border-t border-gray-100">
+            <h3 className="text-2xl font-extrabold text-gray-950 tracking-tight mb-8">
+              Related Articles
+            </h3>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {relatedArticles.map((rel) => (
+                <Link
+                  key={rel.id}
+                  to={`/article/${rel.slug || rel.id}`}
+                  className="group flex flex-col h-full bg-white border border-gray-100 rounded-[2rem] p-5 hover:shadow-lg hover:border-gray-200/60 hover:-translate-y-1 transition-all duration-300 ease-out"
+                >
+                  <div className="aspect-[16/10.5] rounded-[1.5rem] overflow-hidden bg-gray-50 mb-4 border border-gray-100 shadow-sm shrink-0">
+                    <img
+                      src={
+                        rel.featured_image ||
+                        "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2672&auto=format&fit=crop"
+                      }
+                      alt={rel.title}
+                      className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500 ease-out"
+                      loading="lazy"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+                  <div className="text-brand-600 text-[11px] font-bold uppercase tracking-wider mb-2">
+                    {getCategoryName(rel.category_id)}
+                  </div>
+                  <h4 className="text-base sm:text-lg font-extrabold text-gray-950 mb-2 leading-snug group-hover:text-brand-500 transition-colors line-clamp-2">
+                    {rel.title}
+                  </h4>
+                  <p className="text-gray-500 text-xs leading-relaxed mb-4 line-clamp-2 flex-grow font-medium">
+                    {rel.subtitle || rel.content?.replace(/<[^>]+>/g, "").substring(0, 100)}...
+                  </p>
+                  
+                  {/* Metadata Row */}
+                  <div className="flex items-center gap-3 pt-3 border-t border-gray-50 mt-auto">
+                    <img
+                      src={getAuthor(rel.author_id).avatar}
+                      alt={getAuthor(rel.author_id).name}
+                      className="w-7 h-7 rounded-full border border-gray-100 object-cover shrink-0"
+                    />
+                    <div className="min-w-0">
+                      <p className="text-[11px] font-bold text-gray-950 truncate">
+                        {getAuthor(rel.author_id).name}
+                      </p>
+                      <div className="flex items-center gap-1 text-[9px] font-semibold text-gray-400 mt-0.5">
+                        <span>
+                          {new Date(
+                            rel.published_at || rel.created_at,
+                          ).toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                          })}
+                        </span>
+                        <span>•</span>
+                        <span>{getReadingTimeForArticle(rel)}</span>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Mobile Social Bar */}
         <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-gray-200 p-4 flex items-center justify-around z-50">
           <button
@@ -454,7 +649,7 @@ export function ArticlePage() {
             onClick={() => {
               const url = `https://bitlance.com/article/${article.slug || article.id}`;
               navigator.clipboard.writeText(url);
-              alert("Link copied to clipboard!");
+              triggerToast("Link copied to clipboard!");
             }}
             title="Copy Link"
             className="p-2 text-gray-400 hover:text-brand-500"
@@ -474,6 +669,14 @@ export function ArticlePage() {
       </article>
 
       <Footer />
+
+      {/* Modern float Toast */}
+      {showToast && (
+        <div className="fixed bottom-20 sm:bottom-6 right-6 z-50 bg-gray-950 text-white font-bold text-sm px-5 py-3.5 rounded-2xl shadow-2xl border border-gray-800 flex items-center gap-2.5 animate-scale-up select-none">
+          <span className="w-2 h-2 rounded-full bg-brand-500 animate-pulse" />
+          <span>{toastMessage}</span>
+        </div>
+      )}
     </div>
   );
 }

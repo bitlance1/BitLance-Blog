@@ -4,16 +4,28 @@ import { motion, AnimatePresence } from "motion/react";
 
 const faqs = [
   {
-    question: "How can freelancers get paid in Bitcoin?",
-    answer: "Using non-custodial Lightning wallets or on-chain addresses. When an invoice is presented and paid, the funds flow directly peer-to-peer. Platforms like Bitlance use smart contracts to hold funds in escrow until work is delivered."
+    question: "How do I get paid as a freelancer on BitLance?",
+    answer: "When the client clicks Approve and Pay on your milestone, the escrow releases automatically and your agreed amount is paid directly to the Lightning address set in your Settings. There is no manual withdraw step or delay, just keep your Lightning address correct."
   },
   {
-    question: "What are Bitcoin freelance jobs?",
-    answer: "These are standard professional roles (software engineering, design, marketing) where compensation is strictly denominated or paid out via BTC."
+    question: "What are the platform fees?",
+    answer: "The client pays a flat 5% platform fee. Freelancers receive 100% of the agreed amount, with absolutely zero deductions from their earnings."
   },
   {
-    question: "How does Lightning Network payment work?",
-    answer: "Lightning is a Layer-2 scaling solution on top of Bitcoin, allowing for instant, high-volume micro-transactions with virtually zero routing fees—ideal for hourly or milestone-based freelance payouts."
+    question: "Where do I see my escrow balance?",
+    answer: "Clients can monitor all active escrows on their Payments page. Freelancers can view their secured funds locked in escrow on their Earnings page."
+  },
+  {
+    question: "How does a client fund a contract?",
+    answer: "Clients can fund a contract either fully upfront or milestone-by-milestone. This is done by generating a Lightning escrow invoice directly inside the Messages section. Once the invoice is paid, the contract status automatically transitions to 'work in progress' so the freelancer can safely begin working."
+  },
+  {
+    question: "What if there is a dispute or we cannot agree on the work?",
+    answer: "If any disagreement arises, either party can select 'Raise Dispute' from the three-dot menu in their chat under Messages. A BitLance admin will review the contract, contact both parties directly to gather facts, and resolve the escrow. Refunds and releases are never executed unilaterally without full admin verification."
+  },
+  {
+    question: "Can I work or execute payments outside of the BitLance platform?",
+    answer: "We strongly discourage off-platform deals. Taking communication or payment off-platform completely removes your escrow protection, leaving both parties with no recourse if a dispute arises or work is not delivered."
   }
 ];
 
@@ -69,11 +81,14 @@ export function FAQnNewsletter() {
       {/* Newsletter Section */}
       <section className="py-24 bg-white border-t border-gray-100">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-flex items-center gap-1.5 rounded-full bg-brand-50 border border-brand-100 px-3 py-1 text-xs font-bold text-brand-700 uppercase mb-4 tracking-wider">
+            Planned &amp; In Progress
+          </div>
           <h2 className="heading-display text-4xl font-bold text-gray-900 mb-4 tracking-tight">
             Stay Ahead of the Bitcoin Economy
           </h2>
           <p className="text-lg text-gray-500 mb-10 max-w-xl mx-auto">
-            Get the latest Bitcoin freelancing insights, remote work tips, and industry updates delivered directly to your inbox.
+            Our official newsletter is currently in development. Subscribe today to join our waitlist and be the first to receive premium remote Bitcoin freelancing insights, remote work tips, and product updates when we go live.
           </p>
 
           <form className="mx-auto max-w-md flex flex-col sm:flex-row gap-3">

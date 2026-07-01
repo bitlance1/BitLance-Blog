@@ -1,0 +1,129 @@
+{
+  "articles": [
+    {
+      "id": "a_1",
+      "title": "10 Best Niches for Bitcoin Freelancers in 2026",
+      "featured_image": "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2670&auto=format&fit=crop",
+      "author_id": "pub-1",
+      "category_id": "c3",
+      "status": "published",
+      "content": "<p>The global demand for specialized talent in the Bitcoin economy is at an all-time high. Unlike general freelancing platforms, BitLance focuses exclusively on Bitcoin-native roles. By working here, freelancers receive their full agreed-upon contract amount directly into their private wallets, with no platform-side earnings deductions, because clients pay the flat 5% platform fee.</p><h2>1. Lightning Network Integration (LND, CLN, LDK)</h2><p>Companies are looking for developers who can integrate Layer-2 solutions into their existing checkouts. Expertise in LND, Core Lightning (CLN), and LDK is highly prized.</p><h2>2. Non-Custodial Wallet Design</h2><p>Creating intuitive, secure UI/UX for self-custodial Bitcoin applications requires specific design skills. Seamlessly guiding users through seed phrase backups and channel management is a critical niche.</p><h2>3. Nostr and Fedimint App Development</h2><p>With decentralized social protocols like Nostr and community mints like Fedimint growing rapidly, engineers who understand decentralized relays and chaumian e-cash are in huge demand.</p><h2>4. Cryptographic Smart Escrow Integration</h2><p>Securing contracts with smart escrow systems is a core requirement of modern peer-to-peer commerce. BitLance uses these principles natively to lock funds securely before milestones begin.</p><h2>5. Technical Content & Educational Writing</h2><p>Explaining complex technical protocols clearly is a premium skill. Companies need writers to draft documentation, tutorials, and support guides that build trust and drive user adoption.</p><p>Getting started on BitLance is simple: no invasive KYC forms are required—only your name and email address are needed to build a profile and start bidding on jobs today.</p>",
+      "published_at": "2026-06-29T21:14:13.289Z",
+      "updated_at": "2026-06-29T21:14:13.289Z"
+    },
+    {
+      "id": "a_2",
+      "title": "How to Calculate Your Hourly Rate in Sats",
+      "featured_image": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=2672&auto=format&fit=crop",
+      "author_id": "pub-1",
+      "category_id": "c3",
+      "status": "published",
+      "content": "<p>Pricing your services in Satoshis (sats), the smallest unit of Bitcoin, is highly rewarding but requires a solid strategic approach. Denominating contract rates in sats ensures that you receive borderless, hard currency directly on-chain or over the Lightning Network.</p><h2>1. Establishing Your Base Rate</h2><p>Begin by defining your target hourly rate in fiat, then convert that into sats using dynamic conversion tools. It is recommended to include a tiny volatility buffer when pitching on longer contracts.</p><h2>2. Milestone-Based Escrows Protect Your Rate</h2><p>On BitLance, clients fund contracts per milestone using Lightning invoices in their Messages section. This locks the negotiated budget in escrow before you write a single line of code, protecting your time from payment defaults.</p><h2>3. Direct Lightning Payouts</h2><p>The moment a client clicks 'Approve and Pay' on your milestone, the escrow is automatically released. The sats flow directly to the Lightning payout address configured in your Settings—bypassing any intermediate holding accounts or withdraw fees.</p>",
+      "published_at": "2026-06-29T07:20:53.289Z",
+      "updated_at": "2026-06-29T07:20:53.289Z"
+    },
+    {
+      "id": "a_3",
+      "title": "Understanding Lightning Invoices vs On-chain Transactions",
+      "featured_image": "https://images.unsplash.com/photo-1621416894569-0f39ed31d247?q=80&w=2669&auto=format&fit=crop",
+      "author_id": "pub-1",
+      "category_id": "c2",
+      "status": "published",
+      "content": "<p>Understanding the difference between Bitcoin's base layer and Layer-2 Lightning Network is crucial for modern remote workers. BitLance leverages the Lightning Network for all platform transactions to enable micro-payroll and friction-free payouts.</p><h2>1. Base Layer On-Chain Transactions</h2><p>On-chain transactions are written permanently to the Bitcoin blockchain. They are ideal for storing large sums of wealth but are accompanied by longer block verification times and higher miner fees.</p><h2>2. Lightning Network (Layer-2) Invoices</h2><p>The Lightning Network operates as a second layer, allowing users to send near-instant transactions with fees of just a few sats. It is perfect for micro-payroll. On BitLance, when a client accepts a proposal, they fund the contract's escrow by generating and paying a Lightning invoice right inside the chat.</p><h2>3. Direct Non-Custodial Release</h2><p>When the client is satisfied with the work, clicking 'Approve and Pay' triggers an automated protocol release. The sats land directly in your preferred self-custodial Lightning address, ensuring you maintain 100% control of your hard-earned funds.</p>",
+      "published_at": "2026-06-28T17:27:33.289Z",
+      "updated_at": "2026-06-28T17:27:33.289Z"
+    },
+    {
+      "id": "a_4",
+      "title": "Building a Portfolio That Bitcoin Companies Love",
+      "featured_image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2670&auto=format&fit=crop",
+      "author_id": "admin-1",
+      "category_id": "c3",
+      "status": "published",
+      "content": "<p>In a borderless digital world, traditional resumes and certificates are rapidly losing relevance. What Bitcoin-native companies care about is 'Proof of Work'—a verifiable track record of completed projects and real technical contributions.</p><h2>1. Demonstrate Real Contributions</h2><p>Contribute to open-source protocols like LND, Core Lightning, or Nostr clients. Documenting your contributions shows companies that you understand decentralized technologies and can work with self-directed focus.</p><h2>2. Leverage BitLance's Reputation Engine</h2><p>BitLance features a dual-review system. After completing each contract, both the freelancer and the client review each other. Build your ranking by delivering high-quality work, securing high ratings, and expanding your professional profile.</p><h2>3. Deliver Milestones Progressively</h2><p>When working on BitLance, structure your contracts with clear, logical milestones. Under the Contracts page, submit completed milestones with clear explanations, code repositories, or design Figma links. Transparent communication leads to positive feedback and repeated client business.</p>",
+      "published_at": "2026-06-28T03:34:13.289Z",
+      "updated_at": "2026-06-28T03:34:13.289Z"
+    },
+    {
+      "id": "a_5",
+      "title": "Tax Compliance and Best Practices for Bitcoin Freelancers",
+      "featured_image": "https://images.unsplash.com/photo-1450101499163-c8848c66cb85?q=80&w=2670&auto=format&fit=crop",
+      "author_id": "admin-1",
+      "category_id": "c1",
+      "status": "published",
+      "content": "<p>Earning in Bitcoin is liberating, but staying compliant with local tax regulations is vital for long-term professional success. Keeping thorough records of your borderless income ensures peace of mind as a digital nomad.</p><h2>1. Document Your Earnings Chronologically</h2><p>You must record the fair market value in your local currency at the precise time of receipt. BitLance simplifies this: the Earnings page provides a complete history of total payouts, funds in escrow, and transaction ledgers to easily export your data.</p><h2>2. Set Aside Funds for Local Taxes</h2><p>Since BitLance operates on a flat client-pays-the-fee model (clients pay 5% and freelancers keep 100% of their earnings), you do not need to worry about hidden deductions. However, you should proactively set aside a portion of your incoming sats in a separate cold storage setup dedicated to tax obligations.</p><h2>3. Understand Self-Custodial Responsibility</h2><p>Remember, BitLance is KYC-free during early onboarding and completely non-custodial—your payouts go straight to your destination Lightning address immediately. This means managing your personal tax logs and backup seed phrases is entirely your own responsibility.</p>",
+      "published_at": "2026-06-27T13:40:53.289Z",
+      "updated_at": "2026-06-27T13:40:53.289Z"
+    },
+    {
+      "id": "a_6",
+      "title": "Cold Email Templates for Bitcoin Clients",
+      "featured_image": "https://images.unsplash.com/photo-1596526131083-e8c633c948d2?q=80&w=2574&auto=format&fit=crop",
+      "author_id": "pub-1",
+      "category_id": "c3",
+      "status": "published",
+      "content": "<p>Pitching startup founders in the Bitcoin ecosystem requires brevity, clarity, and demonstrating direct value. Traditional generic pitches fail because they sound like AI-generated templates. Below is a professional template designed to get replies.</p><h2>1. Focus on Direct Problem-Solving</h2><p>Founders are incredibly busy. Keep your cold emails under three concise paragraphs and focus on a specific problem you can solve—such as adding Lightning support or improving wallet UI performance.</p><h2>2. Propose BitLance for Escrow Safety</h2><p>When pitching clients off-platform, offer to finalize the contract via BitLance. Explain to the client that BitLance keeps their transaction safe with secure escrow holding. Mention that BitLance charging a flat 5% platform fee to employers, while keeping freelancer payout 100% fee-free, is a win-win for both sides.</p><h2>3. No-KYC Onboarding Makes It Instant</h2><p>Reassure the client that setting up an account is frictionless. They can sign up instantly with just a name and email, post their budget in sats, fund the escrow via a Lightning invoice, and get the project moving in minutes.</p>",
+      "published_at": "2026-06-26T23:47:33.289Z",
+      "updated_at": "2026-06-26T23:47:33.289Z"
+    },
+    {
+      "id": "a_7",
+      "title": "Self-Custody Basics for Digital Nomads and Freelancers",
+      "featured_image": "https://images.unsplash.com/photo-1621504450181-5d356f61d307?q=80&w=2787&auto=format&fit=crop",
+      "author_id": "pub-1",
+      "category_id": "c1",
+      "status": "published",
+      "content": "<p>As a global freelancer earning Bitcoin, taking full ownership of your money is the ultimate goal. True financial freedom is achieved only by practicing secure, self-custodial principles.</p><h2>1. Choose a Reputable Non-Custodial Wallet</h2><p>Avoid leaving significant balances on custodial systems or centralized exchanges. Select reputable non-custodial Lightning and on-chain wallets (like Phoenix, Muun, or Coldcard) that give you exclusive control over your private keys.</p><h2>2. Keep Your Private Keys Offline</h2><p>Never share your seed phrase, private keys, or wallet password with anyone. BitLance will never ask for them under any circumstance. Your public Lightning address is safe to provide in Settings for receiving payouts, but your keys must remain offline.</p><h2>3. BitLance's Non-Custodial Payout Promise</h2><p>BitLance is committed to decentralized commerce. We do not hold your funds on the platform. The moment a client approves a milestone, the sats release from escrow and are paid directly to your Settings-defined Lightning address, eliminating any withdraw requests.</p>",
+      "published_at": "2026-06-26T09:54:13.289Z",
+      "updated_at": "2026-06-26T09:54:13.289Z"
+    },
+    {
+      "id": "a_8",
+      "title": "How BitLance Natively Secures Freelancing with Lightning Escrows",
+      "featured_image": "https://images.unsplash.com/photo-1639762681485-074b7f4ec651?q=80&w=2670&auto=format&fit=crop",
+      "author_id": "admin-1",
+      "category_id": "c2",
+      "status": "published",
+      "content": "<p>Trust is the most challenging element of remote freelancing. Freelancers fear delivering work and getting ghosted; clients fear paying upfront and receiving sub-par results. BitLance solves this elegantly with its built-in Lightning Escrow system.</p><h2>1. Milestone-Based Funding</h2><p>Before work begins, the client generates a Lightning escrow invoice inside the Messages chat. They pay the invoice, locking the funds in escrow. This tells the freelancer that the budget is secure, and they can confidently begin development.</p><h2>2. Instant Automatic Payout on Approval</h2><p>Once milestones are verified, the client clicks 'Approve and Pay'. This triggers an automatic payout from the escrow directly to the freelancer's wallet. There is no waiting time, no manual withdraw buttons, and no platform-side earnings deductions for the freelancer.</p><h2>3. Neutral Admin Dispute Mediation</h2><p>In rare cases where an agreement cannot be reached, either party can click 'Raise Dispute' from the chat's three-dot menu. A neutral BitLance administrator will contact both the client and the freelancer, examine the submitted deliverables, and execute a fair resolution.</p>",
+      "published_at": "2026-06-25T20:00:53.289Z",
+      "updated_at": "2026-06-25T20:00:53.289Z"
+    }
+  ],
+  "categories": [
+    {
+      "id": "c1",
+      "name": "Bitcoin",
+      "slug": "bitcoin"
+    },
+    {
+      "id": "c2",
+      "name": "Lightning Network",
+      "slug": "lightning-network"
+    },
+    {
+      "id": "c3",
+      "name": "Freelancing",
+      "slug": "freelancing"
+    },
+    {
+      "name": "Testimonials",
+      "id": "c_1782870536858",
+      "slug": "testimonials"
+    }
+  ],
+  "tags": [],
+  "users": [
+    {
+      "id": "admin-1",
+      "role": "admin",
+      "name": "Admin",
+      "avatar": "https://i.pravatar.cc/150?u=admin"
+    },
+    {
+      "id": "pub-1",
+      "role": "publisher",
+      "name": "Publisher",
+      "avatar": "https://i.pravatar.cc/150?u=pub"
+    }
+  ]
+}
